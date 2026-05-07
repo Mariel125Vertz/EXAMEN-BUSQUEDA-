@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure--q-((p2(2@mp21qrdd51s8wv_7-z5+csxmt638jwj)tn6^&aq!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'examen-busqueda.onrender.com',
+    '127.0.0.1',
+    'localhost'
+]
 
 
 # Application definition
@@ -38,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'busquedas',
+    
 ]
 
 MIDDLEWARE = [
