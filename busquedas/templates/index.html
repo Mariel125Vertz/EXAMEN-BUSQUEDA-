@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>
+        Algoritmos de Búsqueda
+    </title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+
+            font-family:'Segoe UI', sans-serif;
+
+            background:
+            linear-gradient(
+            135deg,
+            #f7f1f4,
+            #efe7eb
+            );
+
+            min-height:100vh;
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+            padding:20px;
+        }
+
+        .contenedor{
+
+            width:390px;
+
+            background:white;
+
+            padding:25px;
+
+            border-radius:24px;
+
+            border:1px solid #eddbe2;
+
+            box-shadow:
+            0 8px 20px rgba(97, 28, 51, 0.10);
+        }
+
+        h1{
+
+            text-align:center;
+
+            color:#73203f;
+
+            font-size:25px;
+
+            margin-bottom:10px;
+
+            font-weight:600;
+        }
+
+        .linea{
+
+            width:65px;
+
+            height:3px;
+
+            background:#d8aebd;
+
+            margin:0 auto 22px auto;
+
+            border-radius:10px;
+        }
+
+        label{
+
+            display:block;
+
+            margin-top:12px;
+
+            margin-bottom:6px;
+
+            color:#6e2441;
+
+            font-size:14px;
+
+            font-weight:500;
+        }
+
+        input{
+
+            width:100%;
+
+            padding:11px;
+
+            border:none;
+
+            border-radius:14px;
+
+            background:#faf6f8;
+
+            border:1px solid #ead7de;
+
+            outline:none;
+
+            font-size:14px;
+
+            color:#4c2a36;
+
+            transition:0.3s;
+        }
+
+        input:focus{
+
+            border:1px solid #944663;
+
+            background:white;
+
+            box-shadow:
+            0 0 8px rgba(148,70,99,0.10);
+        }
+
+        button{
+
+            width:100%;
+
+            margin-top:22px;
+
+            padding:12px;
+
+            border:none;
+
+            border-radius:15px;
+
+            background:
+            linear-gradient(
+            135deg,
+            #7d2345,
+            #a03f66
+            );
+
+            color:white;
+
+            font-size:14px;
+
+            font-weight:600;
+
+            cursor:pointer;
+
+            transition:0.3s;
+        }
+
+        button:hover{
+
+            transform:translateY(-1px);
+
+            box-shadow:
+            0 6px 15px rgba(125,35,69,0.18);
+        }
+
+        .resultado{
+
+            margin-top:18px;
+
+            padding:16px;
+
+            border-radius:18px;
+
+            background:#fcf8fa;
+
+            border:1px solid #ecd9e0;
+        }
+
+        .resultado h2{
+
+            color:#7d2345;
+
+            font-size:18px;
+
+            margin-bottom:8px;
+        }
+
+        .resultado p{
+
+            color:#52303c;
+
+            font-size:13px;
+
+            line-height:1.6;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <h1>
+            Algoritmos de Búsqueda
+        </h1>
+
+        <div class="linea"></div>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <label>
+                Estado Inicial
+            </label>
+
+            <input
+                type="text"
+                name="inicio"
+                placeholder="Ejemplo: JILOYORK"
+                required
+            >
+
+            <label>
+                Estado Final
+            </label>
+
+            <input
+                type="text"
+                name="final"
+                placeholder="Ejemplo: AGS"
+                required
+            >
+
+            <button type="submit">
+
+                Buscar Rutas
+
+            </button>
+
+        </form>
+
+        {% if resultado_ucs %}
+
+        <div class="resultado">
+
+            <h2>
+                UCS
+            </h2>
+
+            <p>
+
+                <strong>
+                    Ruta:
+                </strong>
+
+                {{ resultado_ucs.camino }}
+
+            </p>
+
+            <p>
+
+                <strong>
+                    Costo:
+                </strong>
+
+                {{ resultado_ucs.costo }}
+
+            </p>
+
+        </div>
+
+        {% endif %}
+
+        {% if resultado_bfs %}
+
+        <div class="resultado">
+
+            <h2>
+                BFS
+            </h2>
+
+            <p>
+
+                <strong>
+                    Ruta:
+                </strong>
+
+                {{ resultado_bfs }}
+
+            </p>
+
+        </div>
+
+        {% endif %}
+
+        {% if resultado_bpi %}
+
+        <div class="resultado">
+
+            <h2>
+                BPI
+            </h2>
+
+            <p>
+
+                <strong>
+                    Ruta:
+                </strong>
+
+                {{ resultado_bpi }}
+
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>
